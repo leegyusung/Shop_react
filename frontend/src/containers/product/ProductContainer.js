@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ProductForm from '../../components/product/ProductForm';
 import { useDispatch, useSelector } from "react-redux";
 import { changeField } from "../../modules/product";
+import { initForm } from '../../modules/cart';
 
 const ProductContainer = () => {
     const dispatch = useDispatch();

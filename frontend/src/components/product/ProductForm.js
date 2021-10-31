@@ -112,10 +112,10 @@ const ProductForm = ({ form, onChangeField }) => {
 
                 <StyledDiv>
                     <StyledLabel>단가:</StyledLabel>
-                    <StyledInput type="number" name="productPrice" defaultValue={form.productPrice} min="0" step="1000" onChange={onChangeField}></StyledInput>
+                    <StyledInput type="number" name="productPrice" min="0" step="1000" onChange={onChangeField}></StyledInput>
 
                     <StyledLabel>수량:</StyledLabel>
-                    <StyledInput type="number" name="productAmount" defaultValue={form.productAmount} min="0" onChange={onChangeField}></StyledInput>
+                    <StyledInput type="number" name="productAmount" min="0" onChange={onChangeField}></StyledInput>
                 </StyledDiv>
 
                 <StyledDiv>

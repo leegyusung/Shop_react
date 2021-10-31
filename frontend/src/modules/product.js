@@ -84,7 +84,7 @@ const product = handleActions({
     [CHANGE_FIELD]: (state, { payload: { key, value } }) => produce(state, draft => {
         draft["products"][key] = value;
     }),
-    [INITFORM]: (state, action) => initialState.product,
+    [INITFORM]: (state, action) => initialState,
     [PRODUCT]: (state, action) => produce(state, draft => {
         draft.loading = true;
     }),

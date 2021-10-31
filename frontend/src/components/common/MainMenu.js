@@ -35,13 +35,16 @@ const MainMenu = () => {
     return (
         <MainMenuBlock>
             {user && (<CategoryForm>
-                <StyledImage src={picA}></StyledImage>
-                <div>
-                    <h4>
-                        마이페이지
-                    </h4>
-                </div>
-            </CategoryForm>)}
+                <Link to={`/mypage/@${user.username}`}>
+                    <StyledImage src={picA}></StyledImage>
+                    <div>
+                        <h4>
+                            마이페이지
+                        </h4>
+                    </div>
+                </Link>
+            </CategoryForm>)
+            }
             <CategoryForm>
                 <Link to='/products'>
                     <StyledImage src={picB}></StyledImage>
@@ -52,23 +55,27 @@ const MainMenu = () => {
                     </div>
                 </Link>
             </CategoryForm>
-            {user && (<CategoryForm>
-                <Link to={`/cart/@${user.username}`}>
-                    <StyledImage src={picC}></StyledImage>
+            {
+                user && (<CategoryForm>
+                    <Link to={`/cart/@${user.username}`}>
+                        <StyledImage src={picC}></StyledImage>
+                        <div>
+                            <h4>
+                                장바구니
+                            </h4>
+                        </div>
+                    </Link>
+                </CategoryForm>)
+            }
+            <CategoryForm>
+                <Link to="/comment">
+                    <StyledImage src={picD}></StyledImage>
                     <div>
                         <h4>
-                            장바구니
+                            게시판
                         </h4>
                     </div>
                 </Link>
-            </CategoryForm>)}
-            <CategoryForm>
-                <StyledImage src={picD}></StyledImage>
-                <div>
-                    <h4>
-                        게시판
-                    </h4>
-                </div>
             </CategoryForm>
         </MainMenuBlock >
     );

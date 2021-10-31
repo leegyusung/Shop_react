@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Responsive from "../common/Responsive";
 import palette from "../../lib/style/palette";
 import Button from "../common/Button";
+import { withRouter } from "react-router";
 
 const PurChaseFormBlock = styled(Responsive)`
  margin-top: 3rem;
@@ -35,6 +36,9 @@ const PurChaseDiv = styled.div`
      .productAmount{
          width: 100px;
      }
+     .item-sold{
+         color: red;
+     }
 `
 
 const PurChaseLabel = styled.div`
@@ -46,17 +50,17 @@ const PurChaseLabel = styled.div`
 `
 
 
-const PurChaseForm = ({ form, loading }) => {
+const PurChaseForm = ({ form, loading, cartAmount, onChange, onCart, onPurchase }) => {
 
     if (loading || !form) return null;
-    const link = "http://localhost:3002/" + form.productFile;
+    const link = "http://localhost:3000/" + form.productFile;
 
     return (
         <PurChaseFormBlock>
-            <PurChaseLabel><h3>상품 정보</h3></PurChaseLabel>
+            <PurChaseLabel><h3><a href="/products">상품 정보</a></h3></PurChaseLabel>
             {!loading && (
                 <PurChaseDiv>
-                    <div className="left"><img src={link} alt=""></img></div>
+                    <div className="left"><img src={`/${form.productFile}`} alt=""></img></div>
                     <div className="right">
                         <h2>{form.productName}</h2>
                         <hr></hr>
@@ -64,13 +68,17 @@ const PurChaseForm = ({ form, loading }) => {
                         <span>판매가 {form.productPrice}원</span><br />
                         <span>상품평 {form.productGrade}</span><br />
                         <span>구매수량
-                            <input className="productAmount" type="number" max={form.productAmount} min="1" defaultValue="1"></input>
+                            {form.productAmount > 0 ? (<input className="productAmount" type="number" name="cartAmount" max={form.productAmount} min="1" defaultValue="1" onChange={onChange}></input>)
+                                : (<span className="item-sold">Sold Out</span>)}
+
                         </span><br />
                         <span>상품소개 {form.productDescription}</span>
-                        <div className="button-div">
-                            <Button space cyan>구매</Button>
-                            <Button>담기</Button>
-                        </div>
+                        {form.productAmount > 0 ? (<div className="button-div">
+                            <Button space cyan onClick={onPurchase}>구매</Button>
+                            <Button onClick={onCart}>담기</Button>
+                        </div>) :
+                            (null)}
+
                     </div>
                 </PurChaseDiv>)}
 
@@ -78,4 +86,4 @@ const PurChaseForm = ({ form, loading }) => {
     );
 };
 
-export default PurChaseForm;
+export default withRouter(PurChaseForm);

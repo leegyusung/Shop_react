@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 import Responsive from '../common/Responsive';
 import palette from '../../lib/style/palette';
-import Button from '../common/Button';
 import { Link } from 'react-router-dom';
-import qs from 'qs';
 
 const ProductListBlock = styled(Responsive)`
     margin-top: 2rem;
@@ -25,6 +23,10 @@ const ProductForm = styled.div`
         color: orange;
         animation: blink-effect 0.8s step-end infinite;
     }
+    .item-sold{
+        color: red;
+        animation: blink-effect 0.8s step-end infinite;
+    }
     @keyframes blink-effect { 50% { opacity: 0; } }
 `
 const ProductLabel = styled.div`
@@ -34,11 +36,7 @@ const ProductLabel = styled.div`
         color: ${palette.gray[7]}
     }
 `
-const ButtonDiv = styled.div`
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    align-items: center;
-`
+
 
 const ProductList = ({ form, loading }) => {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -46,7 +44,7 @@ const ProductList = ({ form, loading }) => {
         <ProductListBlock>
             <ProductLabel><h3>상품 목록</h3></ProductLabel>
             <div className="row">
-                {!loading && (
+                {!loading && user && (
                     form.map(data => (
                         <ProductForm key={data._id}>
                             <Link to={`/products/@${user.username}/${data._id}`}>
@@ -54,14 +52,11 @@ const ProductList = ({ form, loading }) => {
                             </Link>
                             <hr></hr>
                             <div><span>{data.productName}</span></div>
-                            <div><span className="item-price">{data.productPrice}</span></div>
-                            <ButtonDiv>
-                                <Button space cyan>구매</Button>
-                                <Button>담기</Button>
-                            </ButtonDiv>
+                            {data.productAmount > 0 ? (<div><span className="item-price">{data.productPrice}</span></div>) : (<div><span className="item-sold">Sold Out</span></div>)}
                         </ProductForm>
                     ))
                 )}
+
             </div>
         </ProductListBlock >
     );

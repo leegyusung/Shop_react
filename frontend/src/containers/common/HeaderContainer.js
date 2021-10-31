@@ -1,10 +1,10 @@
 import Header from "../../components/common/Header";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { check, logout } from '../../modules/user';
 import { withRouter } from "react-router";
 
-const HeaderContainer = ({ history }) => {
+const HeaderContainer = ({ history, location }) => {
     const dispatch = useDispatch();
     const { user } = useSelector(({ user }) => ({
         user: user.user
@@ -14,8 +14,7 @@ const HeaderContainer = ({ history }) => {
         const result = window.confirm('로그아웃 하시겠습니까?');
         if (!result) return;
         dispatch(logout())
-        history.go(0)
-    }, [dispatch, history])
+    }, [dispatch])
 
 
     return (

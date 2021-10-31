@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "../common/Button";
 import Responsive from "../common/Responsive";
 import palette from "../../lib/style/palette";
+import { withRouter } from "react-router";
 
 const CartFormBlock = styled(Responsive)`
     margin-top: 3rem;
@@ -20,24 +21,32 @@ const CartFormDiv = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 1.5rem;
 `
 
 
-const CartForm = () => {
+const CartForm = ({ loading, cart, onRemove }) => {
+    if (loading || !cart) return null;
     return (
         <CartFormBlock>
             <CartLabel><h3>장바구니</h3></CartLabel>
-            <CartFormDiv>
-                <input type="checkbox"></input>
-                <img src="다운로드.webp" alt=""></img>
-                <span>12313</span>
-                <input type="number"></input>
-                <span>12313</span>
-                <Button cyan>구매</Button>
-                <Button>삭제</Button>
-            </CartFormDiv>
+            {!loading && cart && (
+                <>
+                    {cart.map(data => (
+                        <CartFormDiv key={data._id}>
+                            <input type="checkbox"></input>
+                            <img src={"http://localhost:3000/" + data.product.productFile} alt="" width="100px" height="80px"></img>
+                            <span>{data.product.productName}</span>
+                            <input type="number" defaultValue={data.cartAmount}></input>
+                            <span>{data.cartSum}</span>
+                            <Button cyan>구매</Button>
+                            <Button onClick={() => onRemove(data._id)}>삭제</Button>
+                        </CartFormDiv>
+                    ))}
+                </>
+            )}
         </CartFormBlock>
     );
 };
 
-export default CartForm;
+export default withRouter(CartForm);
