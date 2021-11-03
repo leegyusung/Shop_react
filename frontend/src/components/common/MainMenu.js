@@ -46,7 +46,7 @@ const MainMenu = () => {
             </CategoryForm>)
             }
             <CategoryForm>
-                <Link to='/products'>
+                <Link to='/products?page=1'>
                     <StyledImage src={picB}></StyledImage>
                     <div>
                         <h4>

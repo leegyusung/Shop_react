@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import qs from 'qs';
 import Button from '../common/Button';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const PageNationBlock = styled.div`
     width: 320px;
@@ -14,16 +15,37 @@ const PageNationBlock = styled.div`
 `
 const PageNumber = styled.div``
 
-const PageNation = () => {
+// const buildLink = ({ page }) => {
+//     const query = qs.stringify({ page });
+//     return page ? `/@${username}?${query}` : `/?${query}`;
+// }
+
+
+const PageNation = ({ page }) => {
+    const [display, setDisplay] = useState(false);
+    const last_page = JSON.parse(localStorage.getItem('last-page'));
+
+    useEffect(() => {
+        if (page === 1) {
+            setDisplay(true);
+        } else {
+            setDisplay(false);
+        }
+    }, [page])
     return (
         <PageNationBlock>
-            <Button>
-                이전
-            </Button>
-            <PageNumber>1</PageNumber>
-            <Button>
-                다음
-            </Button>
+            <Link to={`?page=${page - 1}`}>
+                <Button disabled={display}>
+                    이전
+                </Button>
+            </Link>
+            <PageNumber>{page}</PageNumber>
+
+            <Link to={`?page=${page + 1}`}>
+                <Button disabled={last_page === page ? true : false}>
+                    다음
+                </Button>
+            </Link>
         </PageNationBlock>
     );
 };

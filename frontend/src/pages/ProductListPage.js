@@ -1,13 +1,13 @@
 import HeaderContainer from "../containers/common/HeaderContainer";
 import ProductListContainer from '../containers/product/ProductListContainer';
-import PageNation from "../components/common/PageNation";
+import PageNationContainer from "../containers/comment/PageNationContainer";
 
 const ProductListPage = () => {
     return (
         <>
             <HeaderContainer></HeaderContainer>
             <ProductListContainer></ProductListContainer>
-            <PageNation></PageNation>
+            <PageNationContainer></PageNationContainer>
         </>
     );
 };

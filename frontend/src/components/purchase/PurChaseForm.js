@@ -60,7 +60,7 @@ const PurChaseForm = ({ form, loading, cartAmount, onChange, onCart, onPurchase 
             <PurChaseLabel><h3><a href="/products">상품 정보</a></h3></PurChaseLabel>
             {!loading && (
                 <PurChaseDiv>
-                    <div className="left"><img src={`/${form.productFile}`} alt=""></img></div>
+                    <div className="left"><img src={`/${form.productFile}`} alt="" width="450" height="300"></img></div>
                     <div className="right">
                         <h2>{form.productName}</h2>
                         <hr></hr>
