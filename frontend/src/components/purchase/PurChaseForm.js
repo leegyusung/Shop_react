@@ -53,7 +53,6 @@ const PurChaseLabel = styled.div`
 const PurChaseForm = ({ form, loading, cartAmount, onChange, onCart, onPurchase }) => {
 
     if (loading || !form) return null;
-    const link = "http://localhost:3000/" + form.productFile;
 
     return (
         <PurChaseFormBlock>
