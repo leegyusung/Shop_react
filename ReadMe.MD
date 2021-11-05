@@ -1,6 +1,9 @@
 <h2>Shop_react</h2>
 
 <ul>
+<li>소개</li>
+유저,관리자 권한을 나누어 상품등록,구매,장바구니,후기,댓글,평점 등록이 가능한 쇼핑몰을 프론트엔드 React, 백엔드 Node를 사용하여 만들었습니다.
+   
 <li>사용 기술</li>
 <img src="https://img.shields.io/badge/React-000000?style=flat-square&logo=react&logoColor=white"/>
 <img src="https://img.shields.io/badge/Redux-000000?style=flat-square&logo=redux&logoColor=white"/>
@@ -14,8 +17,4 @@
 <img src="https://img.shields.io/badge/mongoose-000000?style=flat-square&logo=mongoose&logoColor=white"/>
 <img src="https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white"/>
 
-<li>기능</li>
--관리자 : 상품등록 </br> 
--유저 : 상품구매, 장바구니, 후기등록, 댓글등록
-</ul>
-
+<ul>
